@@ -1,0 +1,31 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 1rem;
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+  transition: var(--main-transition);
+}
+
+.login__button {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1rem;
+  background-color: #000;
+  transition: var(--main-transition);
+}
+
+.login__button:hover {
+  background-color: #2db97c;
+}
+
+@media screen and (max-width: 520px) {
+  .login {
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+}

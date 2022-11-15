@@ -1,0 +1,111 @@
+.userSettings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0.3rem 1rem;
+  gap: 0.5rem;
+  transition: var(--main-transition);
+}
+
+.userSettings__userInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 5px 10px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  transition: var(--main-transition);
+}
+
+.userSettings__userDetails {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  transition: var(--main-transition);
+}
+
+.userSettings__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  transition: var(--main-transition);
+}
+
+.userSettings__subTitle {
+  font-size: 1rem;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  color: #888;
+  transition: var(--main-transition);
+}
+
+.userSettings__links {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: var(--main-transition);
+}
+
+.userSettings__links__active {
+  background-color: rgba(131, 187, 38, 0.34);
+  transition: var(--main-transition);
+}
+
+.userSettings__link__item {
+  font-size: 1.2rem;
+  font-weight: 400;
+  width: 100%;
+  margin: 0;
+  transition: var(--main-transition);
+}
+
+.userSettings__links:hover {
+  cursor: pointer;
+  background-color: rgba(131, 187, 38, 0.34);
+}
+
+.logOut {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: var(--main-transition);
+}
+
+.logOut:hover {
+  cursor: pointer;
+  background-color: rgba(219, 36, 36, 0.404);
+}
+
+.userSettings__version__text {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0 10px;
+  color: #888;
+  transition: var(--main-transition);
+}
+
+.userSettings__button {
+  width: 100%;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 8px;
+
+  background-color: rgb(219, 36, 36);
+  transition: var(--main-transition);
+}
