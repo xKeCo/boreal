@@ -31,15 +31,15 @@ export function UserSettings() {
       <div className={s.userSettings__userInfo}>
         <Avatar
           squared
-          text={user.name}
+          text={user?.name}
           color="primary"
           textColor="white"
           size="md"
           className={s.sidebar__user}
         />
         <div className={s.userSettings__userDetails}>
-          <h1 className={s.userSettings__title}>{user.name}</h1>
-          <p className={s.userSettings__subTitle}> {user.email}</p>
+          <h1 className={s.userSettings__title}>{user?.name}</h1>
+          <p className={s.userSettings__subTitle}> {user?.email}</p>
         </div>
       </div>
 

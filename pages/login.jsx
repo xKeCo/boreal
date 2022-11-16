@@ -78,7 +78,7 @@ function Login() {
 
       <form className={s.login} onSubmit={handleSubmit}>
         <Image
-          src="/logos/Logo.svg"
+          src="/logos/Logo.png"
           alt="Logo"
           className={s.logo}
           width={250}

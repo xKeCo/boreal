@@ -23,6 +23,12 @@
   background-color: #2db97c;
 }
 
+@media screen and (max-width: 950px) {
+  .container {
+    padding: 0;
+  }
+}
+
 @media screen and (max-width: 520px) {
   .login {
     max-width: 100%;

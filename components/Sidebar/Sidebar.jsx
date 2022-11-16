@@ -89,34 +89,32 @@ export function Sidebar() {
             </ul>
           </div>
         </div>
-        {user && (
-          <div className={s.sidebar__user__container}>
-            <Tooltip
-              placement="top"
-              shadow
-              // trigger="click"
-              leaveDelay={200}
-              offset={-35}
-              css={{
-                top: "955px",
-                left: "225px",
-                width: "280px",
-                border: "1px solid #eaeaea",
-                padding: "0.357rem 0",
-              }}
-              content={<UserSettings />}
-            >
-              <Avatar
-                squared
-                text={user.name}
-                color="primary"
-                textColor="white"
-                size="md"
-                className={s.sidebar__user}
-              />
-            </Tooltip>
-          </div>
-        )}
+        <div className={s.sidebar__user__container}>
+          <Tooltip
+            placement="top"
+            shadow
+            // trigger="click"
+            leaveDelay={200}
+            offset={-35}
+            css={{
+              top: "955px",
+              left: "225px",
+              width: "280px",
+              border: "1px solid #eaeaea",
+              padding: "0.357rem 0",
+            }}
+            content={<UserSettings />}
+          >
+            <Avatar
+              squared
+              text={user?.name}
+              color="primary"
+              textColor="white"
+              size="md"
+              className={s.sidebar__user}
+            />
+          </Tooltip>
+        </div>
       </div>
     </>
   );

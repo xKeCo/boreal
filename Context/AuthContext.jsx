@@ -62,7 +62,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         getUserData(user);
-        router.push("/");
+        // router.push("/");
       } else {
         setUser(null);
         router.push("/login");

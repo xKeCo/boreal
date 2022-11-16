@@ -3,8 +3,10 @@
 // Next
 
 // Local Components
-import { Button, Col, Row, Table, Tooltip } from "@nextui-org/react";
-import { SEO, Sidebar } from "../components";
+import { Layout } from "../components";
+
+// NextUI Components
+import { Table } from "@nextui-org/react";
 
 // Styles
 import s from "../styles/Productos.module.css";
@@ -134,36 +136,34 @@ function Productos() {
 
   return (
     <>
-      <SEO title="Productos" />
-      <div className={s.flex}>
-        <Sidebar />
-        <div className={s.container}>
-          <h1>Productos</h1>
+      <Layout title="Productos">
+        <h1>Productos</h1>
 
-          <div className={s.table}>
-            <Table
-              css={{
-                height: "auto",
-                minWidth: "100%",
-              }}
-              shadow={false}
-            >
-              <Table.Header columns={columns}>
-                {(column) => (
-                  <Table.Column key={column.key}>{column.label}</Table.Column>
-                )}
-              </Table.Header>
-              <Table.Body items={rows}>
-                {(item) => (
-                  <Table.Row key={item.key}>
-                    {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
-                  </Table.Row>
-                )}
-              </Table.Body>
-            </Table>
-          </div>
+        <div className={s.table}>
+          <Table
+            aria-label="Table of products"
+            css={{
+              height: "auto",
+              minWidth: "100%",
+              zIndex: 99,
+            }}
+            shadow={false}
+          >
+            <Table.Header columns={columns}>
+              {(column) => (
+                <Table.Column key={column.key}>{column.label}</Table.Column>
+              )}
+            </Table.Header>
+            <Table.Body items={rows}>
+              {(item) => (
+                <Table.Row key={item.key}>
+                  {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+                </Table.Row>
+              )}
+            </Table.Body>
+          </Table>
         </div>
-      </div>
+      </Layout>
     </>
   );
 }
