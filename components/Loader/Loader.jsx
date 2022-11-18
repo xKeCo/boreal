@@ -19,3 +19,19 @@ export function Loader() {
     </div>
   );
 }
+
+export function MiniLoader() {
+  return (
+    <div className={s.miniLoader}>
+      <Loading
+        size="md"
+        type="points"
+        loadingCss={{
+          $$loadingSize: "20px",
+          $$loadingColor: "#2db97c",
+        }}
+        color="success"
+      />
+    </div>
+  );
+}
