@@ -2,20 +2,28 @@
 import { useEffect, useState } from "react";
 
 // Firebase imports
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 
 // DB Firestore
 import { db } from "../firebase/firebase";
+import { toast } from "react-hot-toast";
 
 const useInventory = () => {
   // Data state
   const [inventory, setInventory] = useState([]);
 
   // loader
-  const [loading, setLoading] = useState(true);
+  const [loadingInventory, setLoadingInventory] = useState(true);
 
-  // error
-  const [error, setError] = useState(null);
+  // errorInventory
+  const [errorInventory, setErrorInventory] = useState(null);
 
   // number of items
   const [numberOfProducts, setNumberOfProducts] = useState(0);
@@ -28,20 +36,34 @@ const useInventory = () => {
         orderBy("category", "desc"),
         orderBy("name", "asc")
       );
-      const Inventory = await getDocs(queryInventory);
-      const docs = Inventory.docs.map((doc) => ({
-        id: doc.id,
-        totalPrice: doc.data().stock * doc.data().price,
-        ...doc.data(),
-      }));
 
-      setNumberOfProducts(docs.length);
-      setInventory(docs);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setError(error);
-      setLoading(false);
+      onSnapshot(queryInventory, (querySnapshot) => {
+        const docs = querySnapshot.docs.map((docs) => ({
+          id: docs.id,
+          totalPrice: docs.data().stock * docs.data().price,
+          ...docs.data(),
+        }));
+        setInventory(docs);
+        setNumberOfProducts(docs.length);
+        setLoadingInventory(false);
+      });
+    } catch (errorInventory) {
+      console.log(errorInventory);
+      setErrorInventory(errorInventory);
+      setLoadingInventory(false);
+    }
+  };
+
+  // Handle Delete Product
+  const handleDeleteProduct = async (name, id) => {
+    try {
+      await deleteDoc(doc(db, "inventory", id));
+      getInventoryData();
+      toast.success(`Producto eliminado ${name}`);
+      setLoadingInventory(false);
+    } catch (errorInventory) {
+      console.log(errorInventory);
+      setLoadingInventory(false);
     }
   };
 
@@ -51,8 +73,11 @@ const useInventory = () => {
 
   return {
     inventory,
-    loading,
-    error,
+    loadingInventory,
+    setLoadingInventory,
+    errorInventory,
+    setErrorInventory,
+    handleDeleteProduct,
     numberOfProducts,
     getInventoryData,
   };

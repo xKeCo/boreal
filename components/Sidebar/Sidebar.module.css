@@ -1,18 +1,17 @@
 .sidebar {
-  /* border-right: 2px solid #fff; */
-  /* background-color: #f4f6fa; */
-  border: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
   color: black;
-  max-width: 80px;
-  min-width: 80px;
-  width: 100%;
-  height: 100vh;
-  position: sticky;
-  top: 0;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: space-between;
+  max-width: 80px;
+  min-width: 80px;
+  position: sticky;
+  top: 0;
+  bottom: 0;
   transition: var(--main-transition);
+  width: 100%;
 }
 
 .sidebar__logo__container {

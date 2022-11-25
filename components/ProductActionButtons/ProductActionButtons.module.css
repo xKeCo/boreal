@@ -1,0 +1,22 @@
+.action__button {
+  background-color: #d4e7b5;
+  transition: var(--main-transition);
+}
+
+.action__button:hover {
+  background-color: #a6b48d;
+  transition: var(--main-transition);
+}
+.action__button:hover {
+  background-color: #a6b48d;
+  transition: var(--main-transition);
+}
+
+.action__button__delete {
+  background-color: #f5b5b5;
+  transition: var(--main-transition);
+}
+.action__button__delete:hover {
+  background-color: #c59292;
+  transition: var(--main-transition);
+}

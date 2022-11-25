@@ -75,7 +75,7 @@ export function Nav() {
           </Tooltip>
         </div>
       </Navbar.Content>
-      <Navbar.Collapse>
+      <Navbar.Collapse css={{ bgColor: "white" }}>
         {sideBarLinks.map((link, index) => (
           <Navbar.CollapseItem key={index} activeColor="secondary">
             <Link

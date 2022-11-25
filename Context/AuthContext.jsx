@@ -54,7 +54,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser(newUser);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error Login", error);
     }
   };
 

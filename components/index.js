@@ -4,3 +4,6 @@ export * from "./Sidebar/Sidebar";
 export * from "./UserSettings/UserSettings";
 export * from "./Navbar/Nav";
 export * from "./Layout/Layout";
+export * from "./ProductActionButtons/ProductActionButtons";
+export * from "./TableComponent/TableComponent";
+export * from "./NewProductModal/NewProductModal";

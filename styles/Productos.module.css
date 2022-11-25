@@ -1,6 +1,29 @@
-.table {
-  animation: fadeIn ease 0.5s;
+.products {
+  display: flex;
+  flex-direction: column;
+}
+
+.products__title {
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000;
   transition: var(--main-transition);
+}
+
+.products__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.products__search {
+  margin-bottom: 0.2rem;
+}
+
+.products__addButton {
+  z-index: 99;
 }
 
 .noResultText,
@@ -19,5 +42,11 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .products {
+    padding: 1rem;
   }
 }
