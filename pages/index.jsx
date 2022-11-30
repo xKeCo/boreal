@@ -1,13 +1,13 @@
 // Link
 
 // // Local Components
-import { addDoc, collection } from "firebase/firestore";
-import { useEffect } from "react";
+// import { addDoc, collection } from "firebase/firestore";
+// import { useEffect } from "react";
 import { Layout } from "../components";
-import { db } from "../firebase/firebase";
+// import { db } from "../firebase/firebase";
+import { useInventory } from "../hooks";
 
 // Hooks
-import useInventory from "../hooks/useInventory";
 
 // Home Styles
 import s from "../styles/Home.module.css";

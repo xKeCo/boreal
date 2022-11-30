@@ -50,3 +50,13 @@
     padding: 1rem;
   }
 }
+@media screen and (max-width: 550px) {
+  .products__header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .products__addButton {
+    width: 100%;
+  }
+}

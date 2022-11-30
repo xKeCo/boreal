@@ -15,7 +15,7 @@ import {
 import { db } from "../firebase/firebase";
 import { toast } from "react-hot-toast";
 
-const useInventory = () => {
+export const useInventory = () => {
   // Data state
   const [inventory, setInventory] = useState([]);
 
@@ -82,5 +82,3 @@ const useInventory = () => {
     getInventoryData,
   };
 };
-
-export default useInventory;

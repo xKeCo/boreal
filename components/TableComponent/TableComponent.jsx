@@ -18,7 +18,7 @@ export function TableComponent({
     const cellValue = item[columnKey];
     switch (columnKey) {
       case "name":
-        return <p className={s.table__item}>{cellValue}</p>;
+        return <p className={s.table__item}>{cellValue.toUpperCase()}</p>;
       case "stock":
         return <p className={s.table__item}>{cellValue}</p>;
       case "price":
@@ -26,7 +26,7 @@ export function TableComponent({
       case "totalPrice":
         return <p className={s.table__item}>{cellValue}</p>;
       case "category":
-        return <p className={s.table__item}>{cellValue}</p>;
+        return <p className={s.table__item}>{cellValue.toUpperCase()}</p>;
 
       case "manejo":
         return <ProductActionButtons name={item.name} id={item.id} />;

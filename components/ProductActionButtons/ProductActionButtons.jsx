@@ -10,7 +10,7 @@ import { Button, Tooltip } from "@nextui-org/react";
 import s from "./ProductActionButtons.module.css";
 
 // Hooks
-import useInventory from "../../hooks/useInventory";
+import { useInventory } from "../../hooks";
 
 export function ProductActionButtons({ name, id }) {
   const { handleDeleteProduct } = useInventory();
@@ -23,9 +23,10 @@ export function ProductActionButtons({ name, id }) {
           gap: "0.3rem",
         }}
       >
-        <Tooltip content="Editar">
+        <Tooltip content={`Editar ${name}`}>
           <Button
             className={s.action__button}
+            disabled
             icon={
               <Image
                 src="/icons/editar.svg"
@@ -36,7 +37,7 @@ export function ProductActionButtons({ name, id }) {
             }
           />
         </Tooltip>
-        <Tooltip content="Eliminar">
+        <Tooltip content={`Eliminar ${name}`}>
           <Button
             className={`${s.action__button} ${s.action__button__delete}`}
             icon={

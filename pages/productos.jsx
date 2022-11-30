@@ -16,9 +16,9 @@ import { Button, Input } from "@nextui-org/react";
 
 // Styles
 import s from "../styles/Productos.module.css";
+import { useInventory } from "../hooks";
 
 // Hooks
-import useInventory from "../hooks/useInventory";
 
 function Productos() {
   // Modal state
@@ -93,7 +93,6 @@ function Productos() {
             />
 
             <Button
-              disabled
               className={s.products__addButton}
               onClick={openModalHandler}
             >
