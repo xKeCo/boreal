@@ -8,6 +8,7 @@ import {
   Layout,
   MiniLoader,
   NewProductModal,
+  ProductCard,
   TableComponent,
 } from "../components";
 
@@ -16,15 +17,17 @@ import { Button, Input } from "@nextui-org/react";
 
 // Styles
 import s from "../styles/Productos.module.css";
-import { useInventory } from "../hooks";
 
 // Hooks
+import { useInventory, useWindowDimensions } from "../hooks";
 
 function Productos() {
   // Modal state
   const [open, setOpen] = useState(false);
 
   const openModalHandler = () => setOpen(true);
+
+  const { width } = useWindowDimensions();
 
   const { inventory, loadingInventory, errorInventory } = useInventory();
   const [searchResult, setSearchResult] = useState([]);
@@ -61,7 +64,7 @@ function Productos() {
     },
   ];
 
-  const handleInputChange = (e) => {
+  const handleInputSearchChange = (e) => {
     const texto = e.target.value;
     if (texto.length > 0) {
       const search = inventory.filter((project) => {
@@ -88,7 +91,7 @@ function Productos() {
               aria-label="Buscar en el inventario"
               name="search"
               fullWidth
-              onChange={handleInputChange}
+              onChange={handleInputSearchChange}
               className={s.products__search}
             />
 
@@ -108,18 +111,38 @@ function Productos() {
             </h3>
           ) : (
             <>
-              {searchText && searchResult.length === 0 ? (
-                <h3 className={s.noResultText}>
-                  No se encontraron resultados para: {searchText}
-                </h3>
+              {width < 750 ? (
+                <>
+                  {searchText && searchResult.length === 0 ? (
+                    <h3 className={s.noResultText}>
+                      No se encontraron resultados para: {searchText}
+                    </h3>
+                  ) : searchResult.length > 0 ? (
+                    searchResult.map((product) => (
+                      <ProductCard key={product.id} data={product} />
+                    ))
+                  ) : (
+                    inventory.map((product) => (
+                      <ProductCard key={product.id} data={product} />
+                    ))
+                  )}
+                </>
               ) : (
-                <TableComponent
-                  title="Productos"
-                  columns={columns}
-                  data={inventory}
-                  loading={loadingInventory}
-                  searchResult={searchResult}
-                />
+                <>
+                  {searchText && searchResult.length === 0 ? (
+                    <h3 className={s.noResultText}>
+                      No se encontraron resultados para: {searchText}
+                    </h3>
+                  ) : (
+                    <TableComponent
+                      title="Productos"
+                      columns={columns}
+                      data={inventory}
+                      loading={loadingInventory}
+                      searchResult={searchResult}
+                    />
+                  )}
+                </>
               )}
             </>
           )}

@@ -29,7 +29,9 @@ export function TableComponent({
         return <p className={s.table__item}>{cellValue.toUpperCase()}</p>;
 
       case "manejo":
-        return <ProductActionButtons name={item.name} id={item.id} />;
+        return (
+          <ProductActionButtons name={item.name} id={item.id} data={item} />
+        );
       default:
         return cellValue;
     }

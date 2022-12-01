@@ -58,8 +58,8 @@ export const useInventory = () => {
   const handleDeleteProduct = async (name, id) => {
     try {
       await deleteDoc(doc(db, "inventory", id));
-      getInventoryData();
       toast.success(`Producto eliminado ${name}`);
+      getInventoryData();
       setLoadingInventory(false);
     } catch (errorInventory) {
       console.log(errorInventory);

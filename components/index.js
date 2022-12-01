@@ -7,3 +7,4 @@ export * from "./Layout/Layout";
 export * from "./ProductActionButtons/ProductActionButtons";
 export * from "./TableComponent/TableComponent";
 export * from "./NewProductModal/NewProductModal";
+export * from "./ProductCard/ProductCard";

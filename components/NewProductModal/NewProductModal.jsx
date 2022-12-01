@@ -1,16 +1,28 @@
 // React
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 // NextUI Components
 import { Button, Input, Modal } from "@nextui-org/react";
 
 // Styles
 import s from "./NewProductModal.module.css";
-import { addDoc, collection } from "firebase/firestore";
+
+// Firestore
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+
+// React hot toast (notifications)
 import { toast } from "react-hot-toast";
+
+// Hooks
 import { useInventory, useWindowDimensions } from "../../hooks";
 
-export function NewProductModal({ open, setOpen }) {
+export function NewProductModal({
+  open,
+  setOpen,
+  oneProductData,
+  setOneProductData,
+}) {
   const closeHandler = () => {
     setOpen(false);
   };
@@ -26,6 +38,12 @@ export function NewProductModal({ open, setOpen }) {
     stock: 0,
     price: 0,
   });
+
+  useEffect(() => {
+    if (oneProductData) {
+      setProductData(oneProductData);
+    }
+  }, [oneProductData]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -46,12 +64,35 @@ export function NewProductModal({ open, setOpen }) {
     setLoading(true);
 
     try {
-      await addDoc(collection(db, "inventory"), productData);
-      setLoading(false);
-      getInventoryData();
-      // Close modal
-      closeHandler();
-      toast.success("Producto agregado con éxito");
+      if (oneProductData === null) {
+        await addDoc(collection(db, "inventory"), productData);
+        setLoading(false);
+        toast.success("Producto agregado con éxito");
+        getInventoryData();
+        // Close modal
+        closeHandler();
+      } else {
+        // Update data
+        await updateDoc(doc(db, "inventory", oneProductData.id), {
+          name: productData.name,
+          stock: productData.stock,
+          category: productData.category,
+          price: productData.price,
+        });
+        setLoading(false);
+        toast.success("Producto actualizado con éxito");
+        // Close modal
+        getInventoryData();
+        closeHandler();
+      }
+      setProductData({
+        name: "",
+        category: "",
+        stock: 0,
+        price: 0,
+      });
+
+      setOneProductData(null);
     } catch (error) {
       setError(true);
       console.log(error);
@@ -59,13 +100,6 @@ export function NewProductModal({ open, setOpen }) {
         "Ocurrió un error al subir la informacion, intenta de nuevo."
       );
     }
-
-    setProductData({
-      name: "",
-      category: "",
-      stock: 0,
-      price: 0,
-    });
   };
 
   return (
@@ -88,22 +122,24 @@ export function NewProductModal({ open, setOpen }) {
               clearable
               bordered
               fullWidth
-              size="lg"
               name="name"
               required
               aria-label="Nombre del producto"
               placeholder="Nombre del producto"
+              initialValue={oneProductData?.name}
               onChange={handleOnInputChange}
             />
             <Input
               bordered
               fullWidth
-              size="lg"
+              labelRight="Unidades"
               type="number"
               name="stock"
+              step="0.1"
               required
               aria-label="Cantidad actual"
               placeholder="Cantidad actual"
+              initialValue={oneProductData?.stock}
               onChange={handleOnInputChange}
             />
             <Input
@@ -111,23 +147,23 @@ export function NewProductModal({ open, setOpen }) {
               fullWidth
               labelRight="COP"
               labelLeft="$"
-              size="lg"
               name="price"
               type="number"
               required
               aria-label="Precio"
               placeholder="Precio"
+              initialValue={oneProductData?.price}
               onChange={handleOnInputChange}
             />
             <Input
               clearable
               bordered
               fullWidth
-              size="lg"
               name="category"
               required
               aria-label="Categoria"
               placeholder="Categoria"
+              initialValue={oneProductData?.category}
               onChange={handleOnInputChange}
             />
 
@@ -138,7 +174,16 @@ export function NewProductModal({ open, setOpen }) {
             <Button auto flat color="error" onClick={closeHandler}>
               Cancelar
             </Button>
-            <Button auto type="submit">
+            <Button
+              auto
+              type="submit"
+              disabled={
+                productData.name === oneProductData?.name &&
+                productData.price === oneProductData?.price &&
+                productData.stock === oneProductData?.stock &&
+                productData.category === oneProductData?.category
+              }
+            >
               {loading ? "Agregando..." : "Agregar producto"}
             </Button>
           </Modal.Footer>

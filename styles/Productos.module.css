@@ -57,6 +57,10 @@
   }
 
   .products__addButton {
+    margin-bottom: 1rem;
+  }
+
+  .products__addButton {
     width: 100%;
   }
 }

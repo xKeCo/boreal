@@ -1,0 +1,50 @@
+.card {
+  animation: fadeIn ease 0.5s;
+  transition: var(--main-transition);
+}
+
+.card__product__name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  transition: var(--main-transition);
+}
+
+.card__product__text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  transition: var(--main-transition);
+}
+
+.card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.card__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.card__action__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
