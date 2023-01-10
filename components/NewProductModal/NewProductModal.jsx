@@ -68,7 +68,6 @@ export function NewProductModal({
         await addDoc(collection(db, "inventory"), productData);
         setLoading(false);
         toast.success("Producto agregado con éxito");
-        getInventoryData();
         // Close modal
         closeHandler();
       } else {
@@ -82,8 +81,8 @@ export function NewProductModal({
         setLoading(false);
         toast.success("Producto actualizado con éxito");
         // Close modal
-        getInventoryData();
         closeHandler();
+        setOneProductData(null);
       }
       setProductData({
         name: "",
@@ -91,8 +90,6 @@ export function NewProductModal({
         stock: 0,
         price: 0,
       });
-
-      setOneProductData(null);
     } catch (error) {
       setError(true);
       console.log(error);

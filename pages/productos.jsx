@@ -19,7 +19,7 @@ import { Button, Input } from "@nextui-org/react";
 import s from "../styles/Productos.module.css";
 
 // Hooks
-import { useInventory, useWindowDimensions } from "../hooks";
+import { useInventory, useSearch, useWindowDimensions } from "../hooks";
 
 function Productos() {
   // Modal state
@@ -30,8 +30,7 @@ function Productos() {
   const { width } = useWindowDimensions();
 
   const { inventory, loadingInventory, errorInventory } = useInventory();
-  const [searchResult, setSearchResult] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const { searchText, searchResult, handleInputSearchChange } = useSearch();
 
   const columns = [
     // {
@@ -64,22 +63,6 @@ function Productos() {
     },
   ];
 
-  const handleInputSearchChange = (e) => {
-    const texto = e.target.value;
-    if (texto.length > 0) {
-      const search = inventory.filter((project) => {
-        return `${project.name} ${project.category}`
-          .toLowerCase()
-          .includes(texto.toLowerCase());
-      });
-      setSearchText(texto);
-      setSearchResult(search);
-    } else {
-      setSearchText("");
-      setSearchResult([]);
-    }
-  };
-
   return (
     <>
       <Layout title="Productos">
@@ -91,7 +74,9 @@ function Productos() {
               aria-label="Buscar en el inventario"
               name="search"
               fullWidth
-              onChange={handleInputSearchChange}
+              onChange={(e) => {
+                handleInputSearchChange(e, inventory);
+              }}
               className={s.products__search}
             />
 
@@ -148,7 +133,7 @@ function Productos() {
           )}
         </div>
       </Layout>
-      <NewProductModal open={open} setOpen={setOpen} />
+      <NewProductModal open={open} setOpen={setOpen} oneProductData={null} />
     </>
   );
 }

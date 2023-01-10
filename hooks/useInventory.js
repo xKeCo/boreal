@@ -40,7 +40,7 @@ export const useInventory = () => {
       onSnapshot(queryInventory, (querySnapshot) => {
         const docs = querySnapshot.docs.map((docs) => ({
           id: docs.id,
-          totalPrice: docs.data().stock * docs.data().price,
+          totalPrice: (docs.data().stock * docs.data().price).toFixed(2),
           ...docs.data(),
         }));
         setInventory(docs);

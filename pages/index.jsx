@@ -67,6 +67,7 @@ export default function Home() {
     <>
       <Layout title="Inicio">
         <h1>Inicio</h1>
+        <h2>Productos en el inventario: {numberOfProducts}</h2>
       </Layout>
     </>
   );

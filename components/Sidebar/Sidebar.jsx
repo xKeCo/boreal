@@ -38,10 +38,10 @@ export function Sidebar() {
       link: "/productos",
     },
     {
-      name: "Reportes",
-      icon: "/icons/reportes.svg",
+      name: "Agregar",
+      icon: "/icons/add.svg",
       alt: "Reports",
-      link: "/s",
+      link: "/add",
     },
   ];
 
@@ -79,8 +79,8 @@ export function Sidebar() {
                       <Image
                         src={link.icon}
                         alt={link.name}
-                        width={22}
-                        height={22}
+                        width={26}
+                        height={26}
                       />
                     </li>
                   </Tooltip>
