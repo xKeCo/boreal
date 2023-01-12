@@ -21,36 +21,7 @@ export default function Home() {
   //   // add product to firestore
 
   //   const data = [
-  //     {
-  //       name: "ANESTESIA TOPICA ROXICAINA",
-  //       category: "INSUMOS",
-  //       stock: 0,
-  //       price: 750,
-  //     },
-  //     {
-  //       name: "PRUEVVA",
-  //       category: "MATERIALES",
-  //       stock: 2,
-  //       price: 34829,
-  //     },
-  //     {
-  //       name: "PRUEBA 30",
-  //       category: "LABORATORIO",
-  //       stock: 6,
-  //       price: 840,
-  //     },
-  //     {
-  //       name: "PRUEBAA",
-  //       category: "INSUMOS",
-  //       stock: 123,
-  //       price: 4763,
-  //     },
-  //     {
-  //       name: "PRUEBOTAA",
-  //       category: "BOUTIQUE",
-  //       stock: 7,
-  //       price: 35562,
-  //     },
+  //
   //   ];
 
   //   data.forEach((product) => {
